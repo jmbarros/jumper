@@ -11,7 +11,8 @@
 
     - name: Installing Application Requiriments
       yum: name={{ item }} state=installed
-      with_items:     
+      with_items:
+        - python-setuptools     
         - libselinux-python
         - python-devel
         - yum-utils
@@ -22,9 +23,13 @@
       command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
       ignore_errors: True
 
-    - name: Update pip
-      command: pip install --upgrade pip
+    - name: Install PIP
+      command: easy_install pip
       ignore_errors: True
+      
+#    - name: Update pip
+#      command: pip install --upgrade pip
+#      ignore_errors: True
 
     - name: Installing Docker CE
       yum: name={{ item }} state=installed
