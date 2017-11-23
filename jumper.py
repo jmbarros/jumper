@@ -43,21 +43,24 @@ def move ( ori, dest ):
    os.system(pw)
    return;
 
+def cmd ( cmdx ):
+   " run"
+   os.system(cmdx)
+   return;
+
 def copy ( ori, dest ):
    " coping file "
    cpw = "cp -r " + ori + " " + dest
    os.system(cpw)
    return;
  ############
+ 
 yum_install("epel-release")
-yum_install("python2-pip")
-yum_install("python-urllib3") 
+yum_install("python-setuptools")
+cmd("easy_install pip")
 yum_install("ansible")
 yum_install("git")
-yum_install("python-requests")
 yum_install("pysphere")
-pip("--upgrade pip")
-pip("softlayer")
 git("https://github.com/jmbarros/jumper.git")
 git("https://github.com/jmbarros/servers.git")
 play_book("~/jumper/jumper.yml")

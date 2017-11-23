@@ -1,5 +1,6 @@
 ---
   - hosts: localhost
+    gather_facts: False
     tasks:
     - name: Set SELINUX to PERMISIVE Mode
       selinux:
@@ -20,10 +21,6 @@
 
     - name: Installing Docker CE Repo
       command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-      ignore_errors: True
-
-    - name: Update pip
-      command: pip install --upgrade pip
       ignore_errors: True
 
     - name: Installing Docker CE
@@ -51,7 +48,7 @@
       when: not key.stat.exists
       delegate_to: localhost
 
-    - name: setting max map count
-      command: sysctl -w vm.max_map_count=262144
-      ignore_errors: True
+#    - name: setting max map count
+#      command: sysctl -w vm.max_map_count=262144
+#      ignore_errors: True
 
